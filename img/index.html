@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlayNova - Tienda de juegos online</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo_container">
+            <img src="img/header.jpg" alt="PlayNova">
+            <span>PlayNova</span>   
+        </div>
+        <nav>
+            <a href="#">Quienes Somos</a>
+            <a href="#">Registrarse</a>
+            <a href="#">Iniciar Sesión</a>
+        </nav>
+        
+    </header>
+
+              
+    <div class="banner">
+        <img id="banner-img" src="img/logo.jpg" alt="PlayNova">
+        <p class="banner-text">Donde cada juego es un mundo nuevo</p>
+    </div>
+
+    <script>
+    const images = [
+    "img/logo.jpg",
+    "img/dbd.jpg",
+    "img/gta.jpg",
+    "img/valo.jpg"
+    ];
+
+    let i = 0;
+    const bannerImg = document.getElementById("banner-img");
+
+    setInterval(() => {
+        i = (i + 1) % images.length;
+        bannerImg.src = images[i];
+    }, 5000); 
+    </script>
+
+
+    <h2>Categorías</h2>
+
+    <div class="categorías">
+        <div class="categoría" onclick="location.href='categoria1.html'">
+            <img src="img/accion.jpg" alt="Acción">
+            <h3>ACCIÓN</h3>        
+        </div>
+        <div class="categoría" onclick="location.href='categoria2.html'">
+            <img src="img/aventura.jpg" alt="Aventura">            
+            <h3>AVENTURA</h3>
+        </div>
+        <div class="categoría" onclick="location.href='categoria3.html'">
+            <img src="img/moba.jpg" alt="Moba">            
+            <h3>MOBA</h3>
+        </div>
+        <div class="categoría" onclick="location.href='categoria4.html'">
+            <img src="img/terror.jpg" alt="Terror">            
+            <h3>TERROR</h3>
+        </div>
+        <div class="categoría" onclick="location.href='categoria5.html'">
+            <img src="img/coop.jpg" alt="Cooperativo">
+            <h3>COOP</h3>
+        </div>
+    </div>
+</div>
+
+    <footer>
+        <p>&copy; 2025 PlayNova. Todos los derechos reservados.</p>
+    </footer>  
+    
+</body>
+
+</html>
+
