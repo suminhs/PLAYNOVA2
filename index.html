@@ -23,27 +23,9 @@
 
               
     <div class="banner">
-        <img id="banner-img" src="img/logo.jpg" alt="PlayNova">
+        <img class="banner-img" id="imageCarrusel" src="img/logo.jpg" alt="PlayNova">
         <p class="banner-text">Donde cada juego es un mundo nuevo</p>
     </div>
-
-    <script>
-    const images = [
-    "img/logo.jpg",
-    "img/dbd.jpg",
-    "img/gta.jpg",
-    "img/valo.jpg"
-    ];
-
-    let i = 0;
-    const bannerImg = document.getElementById("banner-img");
-
-    setInterval(() => {
-        i = (i + 1) % images.length;
-        bannerImg.src = images[i];
-    }, 5000); 
-    </script>
-
 
     <h2>Categorías</h2>
 
@@ -75,7 +57,10 @@
 
     <footer>
         <p>&copy; 2025 PlayNova. Todos los derechos reservados.</p>
-    </footer>  
+    </footer> 
+
+
+    <script src="main.js"></script>
     
 </body>
 
