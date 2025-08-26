@@ -222,8 +222,9 @@ main {
 
 .container {
   max-width: 700px;
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 /*Reset de los estilos para los campos de entrada */
@@ -238,7 +239,6 @@ textarea.form-input {
   background-color: transparent;
   font-size: inherit;
   color: white;
-
 }
 
 input.form-input:active,
@@ -248,7 +248,9 @@ input.form-input:focus {
   border-bottom: 1px solid;
 }
 
-
+input.form-input.error {
+  border-bottom: 1px solid red;
+}
 
 /* Estilos del formulario */
 .form {
@@ -270,7 +272,6 @@ input.form-input:focus {
   border-radius: 10px;
   z-index: 20;
 }
-
 
 .form form {
   display: flex;
@@ -295,12 +296,19 @@ input.form-input:focus {
   transform: translateY(-50%);
 }
 
-
 .form form label {
   margin-left: 0;
   margin-right: auto;
   width: 80%;
   text-align: left;
+}
+
+.form-control .error-message {
+  color: red;
+  font-size: 0.8em;
+  position: absolute;
+  bottom: -20px;
+  right: 0;
 }
 
 .form-image {
@@ -330,7 +338,10 @@ input.form-input:focus {
   background-color: #a843c7;
 }
 
-
+.form-button.disable {
+  background-color: #555;
+  cursor: not-allowed;
+}
 
 /* Navegación Breadcrumb */
 .breadcrumb {
