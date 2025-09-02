@@ -1,140 +1,151 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PlayNova - Registrarse</title>
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
-    <header>
-      <div class="logo_container">
-        <img src="img/header.jpg" alt="PlayNova" />
-        <span>PlayNova</span>
-      </div>
-      <nav>
-        <a href="#">Quienes Somos</a>
-        <a href="registro.html">Registrarse</a>
-        <a href="login.html">Iniciar Sesión</a>
-      </nav>
-    </header>
-    <nav class="breadcrumb">
-      <a href="index.html">Inicio</a> &gt; <span>Registrarse</span>
-    </nav>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crear cuenta</title>
 
-    <main>
-      <div class="container">
-        <div class="form">
-          <div class="form-image">
-            <img
-              src="https://cdn.pixabay.com/photo/2019/04/15/11/42/fortnite-4129124_1280.jpg"
-              alt="Registrarse"
-            />
-          </div>
-          <div class="form-form">
-            <span style="color: white; position: relative; z-index: 10; margin-bottom: 1rem; display: block; font-size: 1.5rem;">Crear una cuenta</span>
-            <form action="#" id="form-register">
-              <div class="form-control">
-                <label for="username">Nombre de usuario:</label>
-                <input
-                  class="form-input"
-                  type="text"
-                  id="username"
-                  name="username"
-                  placeholder=" "
-                  required
-                />
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+  <!-- Estilos personalizados -->
+  <style>
+    body {
+      background-color: #020000; 
+      color: #000; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh; 
+    }
+    .card {
+      background-color: #fff; 
+      border: none;
+      border-radius: 12px;
+      color: #000;
+    }
+    .form-control {
+      background-color: #fff;
+      border: 1px solid #000000;
+      color: #000;
+    }
+    .form-control:focus {
+      border-color: #0d6efd;
+      box-shadow: none;
+      color: #000;
+    }
+    h3, label, p, a {
+      color: #000; /* texto negro */
+      text-align: center;
+    }
+    a {
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-12 col-md-8 col-lg-6">
+        <div class="card shadow p-4">
+          <div class="card-body">
+            <h3 class="text-center mb-4">Crear cuenta</h3>
+            <form class="needs-validation" novalidate>
+              <!-- Usuario -->
+              <div class="mb-3">
+                <label for="username" class="form-label">Nuevo usuario</label>
+                <input type="text" class="form-control" id="username" required minlength="3">
+                <div class="invalid-feedback">El usuario debe tener al menos 3 caracteres.</div>
               </div>
 
-              <div class="form-control">
-                <label for="email">Correo electrónico:</label>
-                <input
-                  class="form-input"
-                  type="email"
-                  id="email"
-                  name="email"
-                  placeholder=" "
-                  required
-                />
+              <!-- Correo -->
+              <div class="mb-3">
+                <label for="email" class="form-label">Correo electrónico</label>
+                <input type="email" class="form-control" id="email" required>
+                <div class="invalid-feedback">Ingresa un correo válido.</div>
               </div>
 
-              <div class="form-control">
-                <label for="password">Contraseña:</label>
-                <input
-                  class="form-input"
-                  type="password"
-                  id="password"
-                  name="password"
-                  placeholder=" "
-                  required
-                />
-                <span
-                  class="toggle-password"
-                  onclick="togglePasswordVisibility('password')"
-                  >Mostrar</span
-                >
+              <!-- Contraseña -->
+              <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="password" required minlength="8" maxlength="20"
+                  pattern="(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[^A-Za-z0-9]).{8,20}">
+                <div class="invalid-feedback">
+                  8–20 caracteres, incluir mayúscula, minúscula, número y símbolo.
+                </div>
               </div>
 
-              <div class="form-control">
-                <label for="confirm-password">Confirmar contraseña:</label>
-                <input
-                  class="form-input"
-                  type="password"
-                  id="confirm-password"
-                  name="confirm-password"
-                  placeholder=" "
-                  required
-                />
-                <span
-                  class="toggle-password"
-                  onclick="togglePasswordVisibility('password')"
-                  >Mostrar</span
-                >
+              <!-- Confirmar contraseña -->
+              <div class="mb-3">
+                <label for="confirmPassword" class="form-label">Confirmar contraseña</label>
+                <input type="password" class="form-control" id="confirmPassword" required minlength="8" maxlength="20">
+                <div class="invalid-feedback">Las contraseñas no coinciden.</div>
               </div>
 
-              <div class="form-control">
-                <label for="date">Fecha de nacimiento:</label>
-                <input
-                  class="form-input"
-                  type="date"
-                  id="date"
-                  name="date"
-                  placeholder=" "
-                  required
-                />
+              <!-- Rol -->
+              <div class="mb-3">
+                <label for="rol" class="form-label">Rol</label>
+                <select class="form-select" id="rol" required>
+                  <option value="">Seleccione un rol</option>
+                  <option value="1">Administrador</option>
+                  <option value="2">Cliente</option>
+                </select>
+                <div class="invalid-feedback">Debe seleccionar un rol.</div>
               </div>
 
-              <div class="form-control">
-                <label for="terms">
-                  <input
-                    type="checkbox"
-                    id="terms"
-                    name="terms"
-                    placeholder=" "
-                    required
-                  />
-                  Acepto los términos y condiciones
-                </label>
+              <!-- Términos -->
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="terms" required>
+                <label class="form-check-label" for="terms">Acepto los términos y condiciones</label>
+                <div class="invalid-feedback">Debes aceptar los términos y condiciones.</div>
               </div>
 
-              <button type="submit" class="form-button disable" disabled>Registrarse</button>
+              <!-- Botón -->
+              <button class="btn btn-success w-100" type="submit">Registrarse</button>
             </form>
+
+            <p class="text-center mt-3">
+              <a href="login.html">¿Ya tienes cuenta? Inicia sesión</a><br>
+              <a href="index.html">Volver al inicio</a>
+            </p>
           </div>
         </div>
       </div>
-    </main>
-    <section>
-      <h2 style="margin-bottom: 1rem">¿Ya tienes una cuenta?</h2>
-      <p>
-        Si ya tienes una cuenta
-        <a href="#">Iniciar Sesión</a>
-      </p>
-    </section>
+    </div>
+  </div>
 
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+  <!-- Validación Bootstrap -->
+  <script>
+  (() => {
+    'use strict';
+    const forms = document.querySelectorAll('.needs-validation');
+    Array.from(forms).forEach(f => {
+      f.addEventListener('submit', e => {
+        // Confirmar contraseña
+        const pass = document.getElementById('password');
+        const confirm = document.getElementById('confirmPassword');
+        if (pass.value !== confirm.value) {
+          confirm.setCustomValidity("Las contraseñas no coinciden");
+        } else {
+          confirm.setCustomValidity("");
+        }
 
-
-
-    <script type="module" src="scripts/form.main.js"></script>
-  </body>
+        if (!f.checkValidity()) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+        f.classList.add('was-validated');
+      }, false);
+    });
+  })();
+  </script>
+</body>
 </html>

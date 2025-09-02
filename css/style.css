@@ -10,12 +10,13 @@
 }
 
 html,
+
 body {
   background-color: black;
   color: white;
   font-family: "Cinzel", sans-serif;
   margin: 0;
-  padding: 0;
+  padding: 5px;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -23,23 +24,14 @@ body {
   height: 100%;
 }
 
-body {
-  padding: 80px 0;
-}
-
-header {
+header {  
+  background: linear-gradient(90deg, #000000, #c053f7);
   position: sticky;
   width: 100%;
-  height: 100px;
-  background: linear-gradient(90deg, #000000, #c053f7);
+  height: 100%;  
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
-}
-
-header img {
-  height: 40px;
 }
 
 .logo_container {
@@ -48,14 +40,15 @@ header img {
 }
 
 .logo_container img {
-  width: 120px;
-  margin-right: 12px;
-  border-radius: 20px;
+  width: 100px;
+  height: 100px;
+  margin-right: 20px;
+  border-radius: 10px;
 }
 
 .logo_container span {
   font-size: 2rem;
-  color: white;
+  color: rgb(255, 255, 255);
   font-weight: bold;
 }
 
@@ -81,6 +74,10 @@ h2 {
   font-size: 1.6em;
   color: white(255, 255, 255);
 }
+
+
+
+
 
 /* Estilos de Banner */
 .banner {
@@ -190,7 +187,7 @@ footer {
 
 .logo_container img {
   max-width: 100px;
-  height: auto;
+  height: fit-content;
 }
 
 .logo_container span {
@@ -373,7 +370,6 @@ input.form-input.error {
 /* Estilos de la tarjeta individual del juego */
 .game-card {
   background-color: #242323;
-  /* outline: 1px solid #c053f7; */
   border-radius: 15px;
   width: 300px;
   min-height: 400px;

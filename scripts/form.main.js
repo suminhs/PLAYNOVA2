@@ -1,139 +1,79 @@
 import Database from "./database.local.js";
 
+
 const form = document.querySelector("form");
 const inputsForm = form.querySelectorAll("input");
 const button = document.querySelector(".form-button");
 let data = {};
 
-inputsForm.forEach((input) => handleInput(input));
 
-function handleInput(input) {
-  input.addEventListener("change", (event) => {
-    const valueInput = event.target.value;
-    const nameInput = event.target.name;
+// función para mostrar validaciones usando clases de Bootstrap
+function showValidation(input, message) {
+// limpiar estados previos
+input.classList.remove("is-valid", "is-invalid");
 
-    data = { ...data, [nameInput]: valueInput };
 
-    if (nameInput === "terms") {
-      const checkbox = event.target.checked;
+// eliminar mensajes previos
+let feedback = input.parentElement.querySelector(".invalid-feedback");
+if (feedback) feedback.remove();
 
-      button.disabled = !checkbox;
-      button.classList.toggle("disable", !checkbox);
-    }
 
-    validInputs(valueInput, nameInput).forEach((result) => {
-      const input = form.querySelector(`[name="${nameInput}"]`).parentElement;
-      if (result.valid !== true) {
-        const errorMessage = document.createElement("span");
-        errorMessage.classList.add("error-message");
-        errorMessage.textContent = result.valid;
-        input.appendChild(errorMessage);
-      } else {
-        const parent = input;
-        const errorMessage = parent.querySelector(".error-message");
-        if (errorMessage) {
-          parent.removeChild(errorMessage);
-        }
-        form.addEventListener("submit", handleSubmit);
-      }
-    });
-
-  });
+if (message) {
+input.classList.add("is-invalid");
+feedback = document.createElement("div");
+feedback.classList.add("invalid-feedback");
+feedback.textContent = message;
+input.parentElement.appendChild(feedback);
+} else {
+input.classList.add("is-valid");
+}
 }
 
-function validInputs(value, name) {
-  const errors = [];
-  let err;
 
-  switch (name) {
-    case "username":
-      err =
-        value.length >= 3
-          ? true
-          : "El nombre de usuario debe tener al menos 3 caracteres.";
-      errors.push({
-        valid: err,
-        name: "username",
-      });
-      break;
-    case "email":
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      err = emailRegex.test(value)
-        ? true
-        : "El correo electrónico no es válido.";
-      errors.push({
-        valid: err,
-        name: "email",
-      });
-      break;
-    case "password":
-      const regex = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+// función para validar todo el formulario
+function validateForm() {
+let allValid = true;
 
-      regex.test(value);
-      err = regex.test(value)
-        ? true
-        : "La contraseña debe contener al menos una letra mayúscula y un número.";
-      errors.push({
-        valid: err,
-        name: "password",
-      });
-      break;
-    case "date":
-      err = validateAge(value) ? true : "Debes ser mayor de 18 años.";
-      errors.push({
-        valid: err,
-        name: "date",
-      });
-      break;
-    case "confirm-password":
-      errors.push({
-        valid: value === data.password ? true : "Las contraseñas no coinciden.",
-        name: "confirm-password",
-      });
-      break;
-  }
-  return errors;
+
+inputsForm.forEach((input) => {
+if (input.type !== "checkbox") {
+const results = validInputs(input.value, input.name);
+const firstError = results.find((r) => !r.valid);
+showValidation(input, firstError ? firstError.message : null);
+
+
+if (firstError) allValid = false;
+}
+});
+
+
+// validar términos
+const terms = form.querySelector("[name='terms']");
+if (!terms.checked) allValid = false;
+
+
+// habilitar o deshabilitar botón
+button.disabled = !allValid;
 }
 
-function validateAge(birthDateString) {
-  const birthDate = new Date(birthDateString);
-  const today = new Date();
 
-  let age = today.getFullYear() - birthDate.getFullYear();
-  const monthDifference = today.getMonth() - birthDate.getMonth();
+// listener para inputs
+inputsForm.forEach((input) => {
+input.addEventListener("input", (event) => {
+const valueInput = event.target.value;
+const nameInput = event.target.name;
+data = { ...data, [nameInput]: valueInput };
+validateForm();
+});
+});
 
-  if (
-    monthDifference < 0 ||
-    (monthDifference === 0 && today.getDate() < birthDate.getDate())
-  ) {
-    age--;
-  }
 
-  return age >= 13;
+// listener para checkbox de términos
+const terms = form.querySelector("[name='terms']");
+if (terms) {
+terms.addEventListener("change", validateForm);
 }
 
-function handleSubmit(event) {
-  event.preventDefault();
 
-  if (event.target !== form) return;
-
-  const formData = new FormData(form);
-  const data = Object.fromEntries(formData.entries());
-
-  if (event.target.id === 'form-register') {
-    const result = Database.addData(data, "users");
-    if (!result) {
-      button.disabled = true;
-      button.classList.add("disable");
-      return 
-    } else {
-      form.reset();
-      window.location.href = "login.html";
-    }
-  } else {
-    console.log(data);
-    
-  }
-  
-  
-}
+// validación inicial
+validateForm();

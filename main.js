@@ -1,5 +1,5 @@
-// logica del carrusel
-const images = ["img/logo.jpg", "img/dbd.jpg", "img/gta.jpg", "img/valo.jpg"];
+// Carrusel en body
+const images = ["img/logo.png", "img/dbd.png", "img/gta.png", "img/valo.png"];
 const bannerImg = document.getElementById("imageCarrusel");
 
 
